@@ -50,13 +50,11 @@ const App: React.FC = () => {
   const [isNameChecked, setIsNameChecked] = useState(false);
   const [showSuccessPage, setShowSuccessPage] = useState(false);
 
-  // Validation: User ID (9-10 digits) and Zone ID (4-5 digits)
   const isUserIdLengthValid = userId.length >= 9 && userId.length <= 10;
   const isZoneIdLengthValid = zoneId.length >= 4 && zoneId.length <= 5;
   const isIdValid = /^\d+$/.test(userId) && /^\d+$/.test(zoneId) && isUserIdLengthValid && isZoneIdLengthValid;
 
   const handleIdChange = (val: string, type: 'user' | 'zone') => {
-    // Force only digits in the state
     const numericVal = val.replace(/\D/g, '');
     if (type === 'user') setUserId(numericVal);
     else setZoneId(numericVal);
@@ -81,7 +79,6 @@ const App: React.FC = () => {
 
     setIdError('');
     setIsProcessing(true);
-    // Simulated check
     setTimeout(() => {
         setIsProcessing(false);
         setIsNameChecked(true);
@@ -90,8 +87,7 @@ const App: React.FC = () => {
   };
 
   const handlePay = () => {
-    if (!isIdValid || !isNameChecked) {
-      setIdError('សូមបញ្ចូល ID ឱ្យបានត្រឹមត្រូវ និងចុច Check Name!');
+    if (!isIdValid || !isNameChecked || !selectedPackage) {
       return;
     }
     
@@ -117,7 +113,7 @@ const App: React.FC = () => {
         <div className="max-w-md w-full bg-white rounded-[2.5rem] p-8 shadow-2xl border-4 border-white animate-in zoom-in-95 duration-500">
           <div className="border-4 border-pink-100 rounded-[2rem] overflow-hidden p-2">
             <div className="relative rounded-[1.5rem] overflow-hidden aspect-square flex flex-col items-center justify-center bg-pink-50">
-              <img src={THANK_YOU_IMG} alt="Thank You" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+              <img src="https://images.squarespace-cdn.com/content/v1/63429cd6fd413b3b2dcf9d1e/f2fd6bf6-1c37-4179-8085-c7b3adae5903/thank+you+icon+la.png"{THANK_YOU_IMG} alt="Thank You" className="absolute inset-0 w-full h-full object-cover opacity-20" />
               <div className="relative z-10 text-center space-y-4 p-6">
                 <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto shadow-lg animate-bounce">
                   <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -128,7 +124,7 @@ const App: React.FC = () => {
                 <p className="text-slate-600 font-bold khmer-text leading-relaxed">
                   ការទិញរបស់អ្នកបានជោគជ័យហើយ។ <br/> Diamond នឹងត្រូវបានបញ្ចូលទៅក្នុងគណនីរបស់អ្នកភ្លាមៗ!
                 </p>
-              </div>
+              </div> 
             </div>
           </div>
           
@@ -147,17 +143,17 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#fdf2f8] pb-24 animate-in fade-in duration-500">
+    <div className="min-h-screen bg-[#fdf2f8] pb-40 animate-in fade-in duration-500">
       {/* Header Banner */}
       <header className="bg-[#d946ef] p-4 flex justify-between items-center shadow-md sticky top-0 z-50">
         <div className="w-12 h-12 bg-white rounded-full border-2 border-white flex items-center justify-center overflow-hidden shadow-lg transform hover:scale-110 transition-transform">
-          <img src={MLBB_ICON_URL} alt="MLBB Logo" className="w-full h-full object-cover" />
+          <img src="https://www.seoclerk.com/pics/001/266/180/4192f716f90d90df5554e5d751c9df98.jpg"{MLBB_ICON_URL} alt="MLBB Logo" className="w-full h-full object-cover" />
         </div>
-        <div className="bg-white px-10 py-2 rounded-full shadow-inner flex items-center gap-2">
+        <div className="bg-white px-8 py-2 rounded-full shadow-inner flex items-center gap-2">
           <h1 className="text-[#d946ef] font-bold text-lg tracking-tight">KMG Top Up</h1>
         </div>
         <div className="w-12 h-12 bg-white rounded-full border-2 border-white flex items-center justify-center overflow-hidden shadow-lg transform hover:scale-110 transition-transform">
-          <img src={MLBB_ICON_URL} alt="MLBB Logo" className="w-full h-full object-cover" />
+          <img src="https://www.seoclerk.com/pics/001/266/180/4192f716f90d90df5554e5d751c9df98.jpg"{MLBB_ICON_URL} alt="MLBB Logo" className="w-full h-full object-cover" />
         </div>
       </header>
 
@@ -165,7 +161,7 @@ const App: React.FC = () => {
       <div className="relative w-full max-w-4xl mx-auto px-4 mt-4">
         <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-[#d946ef]/20 relative">
           <img 
-            src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=1200" 
+            src="https://www.lotkeys.com/uploads/blog/mobilelegendsbangbangheader-ArVR.jpg.webp" 
             alt="MLBB Hero Banner" 
             className="w-full h-48 md:h-80 object-cover"
           />
@@ -173,7 +169,7 @@ const App: React.FC = () => {
             <h2 className="text-4xl font-black text-cyan-400 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] italic uppercase">KMG Top Up</h2>
           </div>
           <div className="absolute bottom-4 left-4 flex items-center gap-3 bg-black/40 backdrop-blur-md p-2 rounded-2xl border border-white/20">
-            <img src={MLBB_ICON_URL} alt="ML Icon" className="w-12 h-12 rounded-xl shadow-lg border border-white/50" />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlfj2kQHcNX4F94E_aNQD_ZTWujNWfoqGA0A&s"{MLBB_ICON_URL} alt="ML Icon" className="w-12 h-12 rounded-xl shadow-lg border border-white/50" />
             <div className="text-white drop-shadow-md">
               <h3 className="font-bold text-xl leading-none uppercase">MOBILE LEGENDS</h3>
               <p className="text-xs font-medium tracking-[0.2em] opacity-80 uppercase">BANG BANG</p>
@@ -237,7 +233,7 @@ const App: React.FC = () => {
           </section>
 
           <div className="bg-white rounded-3xl p-6 shadow-sm border border-pink-100 flex gap-4 items-start">
-             <img src={MLBB_ICON_URL} className="w-14 h-14 rounded-2xl shadow-md border border-pink-100" alt="ml" />
+             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlfj2kQHcNX4F94E_aNQD_ZTWujNWfoqGA0A&s"{MLBB_ICON_URL} className="w-14 h-14 rounded-2xl shadow-md border border-pink-100" alt="ml" />
              <div>
                <h3 className="font-bold text-[#d946ef] mb-1">Mobile Legends Bang Bang</h3>
                <p className="text-xs text-slate-500 leading-relaxed khmer-text">
@@ -245,7 +241,7 @@ const App: React.FC = () => {
                </p>
              </div>
           </div>
-        </div>
+        </div> 
 
         {/* Right Column: Packages & Payment */}
         <div className="space-y-8">
@@ -312,50 +308,105 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      {/* Floating Footer Selection Bar */}
-      {selectedPackage && (
-        <div className="fixed bottom-6 left-4 right-4 max-w-2xl mx-auto glass rounded-3xl p-4 shadow-2xl border border-white/40 flex items-center justify-between z-50 animate-in slide-in-from-bottom-4 duration-500">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shrink-0 border border-pink-100 shadow-sm">
-              <DiamondIcon className="w-7 h-7" />
+      {/* Footer Section */}
+      <footer className="mt-16 bg-white border-t border-pink-100 pt-16 pb-24 px-4">
+        <div className="max-w-2xl mx-auto flex flex-col items-center text-center space-y-8">
+          {/* Brand & Socials Combined */}
+          <div className="space-y-6">
+            <div className="flex flex-col items-center gap-4">
+               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlfj2kQHcNX4F94E_aNQD_ZTWujNWfoqGA0A&s"{MLBB_ICON_URL} className="w-16 h-16 rounded-3xl shadow-xl border-4 border-white" alt="logo" />
+               <span className="text-2xl font-black text-[#d946ef] tracking-tight">KMG STUDIO</span>
             </div>
-            <div className="hidden sm:block">
-              <p className="text-sm font-bold text-slate-700">{selectedPackage.amount}</p>
-              <p className="text-xs font-bold text-[#d946ef]">{selectedPackage.price}</p>
+            <p className="text-sm text-slate-500 khmer-text leading-relaxed max-w-md mx-auto">
+              យើងខ្ញុំផ្តល់ជូននូវសេវាកម្មបញ្ចូល Diamond Mobile Legends ជាមួយតម្លៃសមរម្យ បំផុត និងមានសុវត្ថិភាពខ្ពស់ ជូនដល់អតិថិជនទាំងអស់។
+            </p>
+            <div className="flex justify-center gap-6 pt-4">
+              <a href="https://www.facebook.com/pozz.kheang.334" target="_blank" rel="noreferrer" className="group transition-all transform hover:scale-110">
+                <div className="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-[#d946ef] group-hover:bg-[#1877F2] group-hover:text-white transition-all shadow-sm">
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </div>
+              </a>
+              <a href="https://t.me/chankheanghour" target="_blank" rel="noreferrer" className="group transition-all transform hover:scale-110">
+                <div className="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-[#d946ef] group-hover:bg-[#0088cc] group-hover:text-white transition-all shadow-sm">
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.14-.257.257-.527.257l.192-2.724 4.968-4.482c.217-.191-.047-.3-.334-.11L8.547 13.05 5.9 12.22c-.573-.181-.585-.573.12-.852l10.336-3.986c.48-.175.9.112.738.839z"/></svg>
+                </div>
+              </a>
             </div>
           </div>
-          
-          <div className="flex flex-col items-end gap-1 flex-1 ml-4">
-            <button 
-              onClick={handlePay}
-              disabled={isProcessing || !selectedPackage}
-              className={`w-full sm:w-auto min-w-[180px] font-bold py-3 px-8 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 group ${
-                !isIdValid || !isNameChecked
-                ? 'bg-slate-300 text-slate-500 cursor-not-allowed grayscale'
-                : 'bg-red-500 hover:bg-red-600 text-white hover:scale-[1.02]'
-              }`}
-            >
-              {isProcessing ? (
-                <div className="flex items-center gap-3">
-                  <TechIcon className="w-6 h-6" />
-                  <span className="khmer-text text-sm">កំពុងដំណើរការ...</span>
-                </div>
-              ) : (
-                <>
-                  <span className="font-bold khmer-text text-sm uppercase">បង់ប្រាក់ឥឡូវនេះ</span>
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                </>
-              )}
-            </button>
-            {!isNameChecked && isIdValid && (
-              <p className="text-[9px] text-pink-500 font-bold khmer-text animate-bounce">ចុច "Check name" ជាមុនសិន</p>
-            )}
-            {!isIdValid && (
-              <p className="text-[9px] text-red-500 font-bold khmer-text">សូមបញ្ជូល User ID & Zone ID</p>
+        </div>
+        
+        <div className="max-w-4xl mx-auto mt-16 pt-8 border-t border-slate-100 flex flex-col items-center gap-6">
+          <p className="text-[10px] text-slate-400 font-medium uppercase tracking-[0.2em] text-center leading-relaxed">
+            © 2024 KMG STUDIO. ALL RIGHTS RESERVED. <br />
+            <span className="opacity-60 font-normal">KMG TOP UP IS NOT AFFILIATED WITH MOONTON OR MOBILE LEGENDS BANG BANG.</span>
+          </p>
+          <div className="flex items-center gap-4 opacity-50">
+             <div className="w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center text-slate-400 text-[8px] font-black border border-slate-200">SSL</div>
+             <div className="w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center text-slate-400 text-[8px] font-black border border-slate-200 uppercase">SECURE</div>
+          </div>
+        </div>
+      </footer>
+
+      {/* Permanently Visible Floating Footer Selection Bar */}
+      <div className="fixed bottom-6 left-4 right-4 max-w-2xl mx-auto glass rounded-3xl p-4 shadow-2xl border border-white/40 flex items-center justify-between z-50 transition-all duration-300">
+        <div className="flex items-center gap-3">
+          <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border shadow-sm transition-all duration-300 ${selectedPackage ? 'bg-white border-pink-100' : 'bg-slate-100 border-slate-200 opacity-60'}`}>
+            <DiamondIcon className={`w-8 h-8 transition-transform duration-300 ${selectedPackage ? 'scale-110' : 'scale-90 grayscale'}`} />
+          </div>
+          <div className="block">
+            {selectedPackage ? (
+              <>
+                <p className="text-sm font-bold text-slate-700 animate-in fade-in slide-in-from-left-2">{selectedPackage.amount}</p>
+                <p className="text-xs font-bold text-[#d946ef] animate-in fade-in slide-in-from-left-2">{selectedPackage.price}</p>
+              </>
+            ) : (
+              <p className="text-xs font-bold text-slate-400 italic khmer-text">សូមជ្រើសរើសចំនួន Diamond</p>
             )}
           </div>
         </div>
-      )}
+        
+        <div className="flex flex-col items-end gap-1 flex-1 ml-4">
+          <button 
+            onClick={handlePay}
+            disabled={isProcessing || !selectedPackage || !isIdValid || !isNameChecked}
+            className={`w-full sm:w-auto min-w-[180px] font-bold py-3 px-8 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 group ${
+              !selectedPackage || !isIdValid || !isNameChecked
+              ? 'bg-slate-300 text-slate-500 cursor-not-allowed grayscale'
+              : 'bg-red-500 hover:bg-red-600 text-white hover:scale-[1.02] active:scale-95'
+            }`}
+          >
+            {isProcessing ? (
+              <div className="flex items-center gap-3">
+                <TechIcon className="w-6 h-6" />
+                <span className="khmer-text text-sm">កំពុងដំណើរការ...</span>
+              </div>
+            ) : (
+              <>
+                <span className="font-bold khmer-text text-sm uppercase">បង់ប្រាក់ឥឡូវនេះ</span>
+                <svg className={`w-5 h-5 transition-transform duration-300 ${selectedPackage && isIdValid && isNameChecked ? 'group-hover:translate-x-1' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </>
+            )}
+          </button>
+          
+          {/* Validation Tooltips/Messages */}
+          <div className="h-4 overflow-hidden">
+            {!selectedPackage ? (
+              <p className="text-[9px] text-pink-500 font-bold khmer-text animate-pulse">សូមជ្រើសរើស Diamond (Step 2)</p>
+            ) : !isIdValid ? (
+              <p className="text-[9px] text-red-500 font-bold khmer-text">សូមបញ្ចូល User ID & Zone ID (Step 1)</p>
+            ) : !isNameChecked ? (
+              <p className="text-[9px] text-blue-500 font-bold khmer-text animate-bounce">ចុច "Check name" ជាមុនសិន</p>
+            ) : (
+              <p className="text-[9px] text-green-500 font-bold khmer-text flex items-center gap-1">
+                <svg className="w-2 h-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+                រួចរាល់សម្រាប់ការបង់ប្រាក់
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
