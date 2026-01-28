@@ -11,7 +11,7 @@ const MLBB_ICON_URL = "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/3c/
 const THANK_YOU_IMG = "https://images.unsplash.com/photo-1527018601619-a508a2be00cd?auto=format&fit=crop&q=80&w=800";
 
 const DiamondIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+  <svg viewBox="0 0 24 24" fill="none" xmlns="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU7z5mKUYds1RiQqj0o-aQy0lHUuN-rsH4GzfYRZfn7g&s" className={className}>
     <path d="M12 2L4.5 9L12 22L19.5 9L12 2Z" fill="#3B82F6" stroke="#2563EB" strokeWidth="1.5" strokeLinejoin="round"/>
     <path d="M12 2L8 9L12 22L16 9L12 2Z" fill="#60A5FA" stroke="#2563EB" strokeWidth="1.5" strokeLinejoin="round"/>
     <path d="M4.5 9H19.5" stroke="#2563EB" strokeWidth="1.5" strokeLinejoin="round"/>
@@ -19,7 +19,7 @@ const DiamondIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
 );
 
 const TechIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${className} animate-spin`}>
+  <svg viewBox="0 0 24 24" fill="none" xmlns="https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335202731_577ce88c-7795-4308-ada8-0f78d94b4d9d.png" className={`${className} animate-spin`}>
     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" strokeDasharray="32" className="opacity-20" />
     <path d="M12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.0434 16.4522" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
     <rect x="10" y="10" width="4" height="4" rx="1" fill="currentColor" className="animate-pulse" />
